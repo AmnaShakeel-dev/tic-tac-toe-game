@@ -1,0 +1,242 @@
+:root {
+    --bg: #f0f4ff;
+    --surface: #ffffff;
+    --x-color: #ff4d6d;
+    --o-color: #4361ee;
+    --draw-color: #888;
+    --win-color: #f9c74f;
+    --text-dark: #1a1a2e;
+    --text-muted: #888;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 40px 36px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 420px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+}
+
+.mode-switcher {
+    display: flex;
+    gap: 10px;
+}
+
+.mode-switcher button {
+    padding: 10px 22px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mode-switcher button:hover {
+    border-color: var(--o-color);
+    color: var(--o-color);
+}
+
+.mode-switcher button.active {
+    background: var(--o-color);
+    border-color: var(--o-color);
+    color: white;
+}
+
+.scoreboard {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+}
+
+.score-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 14px 8px;
+    gap: 6px;
+}
+
+.score-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.score-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+#score-x {
+    color: var(--x-color);
+}
+
+#score-o {
+    color: var(--o-color);
+}
+
+#status {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    min-height: 28px;
+    transition: color 0.3s;
+}
+
+#status.x-turn {
+    color: var(--x-color);
+}
+
+#status.o-turn {
+    color: var(--o-color);
+}
+
+#status.win-msg {
+    color: var(--win-color);
+    font-size: 1.2rem;
+}
+
+#status.draw-msg {
+    color: var(--draw-color);
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 110px);
+    grid-template-rows: repeat(3, 110px);
+    gap: 10px;
+}
+
+.cell {
+    width: 110px;
+    height: 110px;
+    background: var(--bg);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    user-select: none;
+    border: 3px solid transparent;
+}
+
+.cell:hover {
+    background: #e8eeff;
+    transform: scale(1.05);
+}
+
+.cell.taken {
+    cursor: default;
+    transform: none;
+}
+
+.cell.x {
+    color: var(--x-color);
+}
+
+.cell.o {
+    color: var(--o-color);
+}
+
+.cell.winner {
+    background: var(--win-color);
+    border-color: #f3a800;
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes mark-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.cell.x,
+.cell.o {
+    animation: mark-in 0.2s ease-out;
+}
+
+#restart {
+    padding: 12px 36px;
+    background: linear-gradient(135deg, var(--x-color), var(--o-color));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 1px;
+}
+
+#restart:hover {
+    opacity: 0.88;
+
+}
+
+#restart:active {
+    transform: scale(0.96);
+
+}
