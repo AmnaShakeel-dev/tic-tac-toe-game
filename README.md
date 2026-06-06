@@ -7,7 +7,7 @@ This project includes both **Player vs Player** and **Player vs AI** gameplay mo
 
 ## 🚀 Live Demo
 
-
+ https://amnashakeel-dev.github.io/tic-tac-toe-game/
 ---
 
 ## 📸 Preview
